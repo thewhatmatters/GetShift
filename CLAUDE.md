@@ -31,6 +31,20 @@ Shift is an AI-powered career matching platform that analyzes user experience an
 - `references/integrations.md` - Provider integration examples
 - `references/patterns.md` - Common email template patterns
 
+### QA Engineer (`.claude/skills/qa-engineer/`)
+**Trigger:** Setting up E2E testing, writing Playwright or Cypress tests, testing API routes, SSR/SSG pages, authentication flows, debugging flaky tests, CI/CD integration.
+
+**Reference files:**
+- `SKILL.md` - Quick start, test organization, core patterns, Next.js-specific testing
+- `references/playwright.md` - Playwright patterns and best practices
+- `references/cypress.md` - Cypress patterns and configuration
+- `references/nextjs-testing.md` - Next.js App Router testing strategies
+
+**Assets:**
+- `assets/playwright.config.ts` - Ready-to-use Playwright config
+- `assets/cypress.config.ts` - Ready-to-use Cypress config
+- `assets/github-actions-e2e.yml` - CI/CD workflow for E2E tests
+
 ## Tech Stack
 
 - **Framework**: Next.js 16.1.1 with App Router and Turbopack

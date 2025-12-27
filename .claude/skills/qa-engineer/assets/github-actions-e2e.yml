@@ -1,0 +1,147 @@
+# GitHub Actions workflow for E2E testing with Playwright
+# Copy to .github/workflows/e2e.yml
+
+name: E2E Tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+env:
+  CI: true
+
+jobs:
+  e2e:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: testdb
+          POSTGRES_USER: testuser
+          POSTGRES_PASSWORD: testpass
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Setup test database
+        run: |
+          npm run db:push
+          npm run db:seed
+        env:
+          DATABASE_URL: postgresql://testuser:testpass@localhost:5432/testdb
+
+      - name: Build application
+        run: npm run build
+        env:
+          DATABASE_URL: postgresql://testuser:testpass@localhost:5432/testdb
+
+      - name: Run E2E tests
+        run: npx playwright test
+        env:
+          DATABASE_URL: postgresql://testuser:testpass@localhost:5432/testdb
+          NEXTAUTH_SECRET: test-secret
+          NEXTAUTH_URL: http://localhost:3000
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
+
+      - name: Upload test traces
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: test-traces
+          path: test-results/
+          retention-days: 7
+
+  e2e-sharded:
+    name: E2E Tests (Sharded)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1/4, 2/4, 3/4, 4/4]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Build application
+        run: npm run build
+
+      - name: Run E2E tests (shard ${{ matrix.shard }})
+        run: npx playwright test --shard ${{ matrix.shard }}
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report-${{ strategy.job-index }}
+          path: playwright-report/
+          retention-days: 7
+
+  merge-reports:
+    name: Merge Reports
+    needs: e2e-sharded
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+      - name: Download all reports
+        uses: actions/download-artifact@v4
+        with:
+          pattern: playwright-report-*
+          path: all-reports
+
+      - name: Merge reports
+        run: npx playwright merge-reports --reporter html ./all-reports
+
+      - name: Upload merged report
+        uses: actions/upload-artifact@v4
+        with:
+          name: merged-playwright-report
+          path: playwright-report/
+          retention-days: 30
