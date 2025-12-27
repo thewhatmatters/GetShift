@@ -9,18 +9,6 @@ import { AnimatePresence, motion } from "motion/react";
 
 const navlinks = [
   {
-    title: "How It Works",
-    href: "#how-it-works",
-  },
-  {
-    title: "What You Get",
-    href: "#features",
-  },
-  {
-    title: "Pricing",
-    href: "#pricing",
-  },
-  {
     title: "Careers",
     href: "/careers",
   },
