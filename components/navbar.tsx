@@ -21,8 +21,12 @@ const navlinks = [
     href: "#pricing",
   },
   {
-    title: "FAQ",
-    href: "#faq",
+    title: "Careers",
+    href: "/careers",
+  },
+  {
+    title: "Blog",
+    href: "/blog",
   },
 ];
 

@@ -15,83 +15,29 @@ import { cn } from "@/lib/utils";
 import { ModeToggle } from "./mode-toggle";
 
 export const Footer = () => {
-  const product = [
-    {
-      title: "How It Works",
-      href: "#how-it-works",
-    },
-    {
-      title: "Career Matching",
-      href: "#features",
-    },
-    {
-      title: "90-Day Roadmap",
-      href: "#features",
-    },
-    {
-      title: "Skills Analysis",
-      href: "#features",
-    },
-    {
-      title: "Pricing",
-      href: "#pricing",
-    },
-    {
-      title: "FAQ",
-      href: "#faq",
-    },
-  ];
-
-  const company = [
-    {
-      title: "About Us",
-      href: "#",
-    },
+  const site = [
     {
       title: "Careers",
-      href: "#",
-    },
-    {
-      title: "Press",
-      href: "#",
-    },
-    {
-      title: "Contact",
-      href: "#",
+      href: "/careers",
     },
     {
       title: "Blog",
-      href: "#",
+      href: "/blog",
     },
   ];
 
   return (
     <footer className="border-t perspective-distant overflow-hidden border-neutral-200 dark:border-neutral-800 py-10 md:py-20 lg:py-32 relative">
-      <Container className="grid grid-cols-1 lg:grid-cols-5 gap-10 relative z-20">
+      <Container className="grid grid-cols-1 lg:grid-cols-4 gap-10 relative z-20">
         <div className="lg:col-span-2 flex flex-col gap-4 items-start">
           <Logo />
           <Subheading>Your experience is worth more than you think.</Subheading>
           <Button className="shadow-brand">Start a 30-day trial</Button>
         </div>
         <div className="flex flex-col gap-4">
-          <h4 className="text-base font-medium text-neutral-400">Product</h4>
+          <h4 className="text-base font-medium text-neutral-400">Site</h4>
           <ul className="list-none flex flex-col gap-2">
-            {product.map((item) => (
-              <li key={item.title}>
-                <Link
-                  href={item.href}
-                  className="text-neutral-600 text-sm hover:text-black dark:text-neutral-400 dark:hover:text-white transition duration-200"
-                >
-                  {item.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="flex flex-col gap-4">
-          <h4 className="text-base font-medium text-neutral-400">Company</h4>
-          <ul className="list-none flex flex-col gap-2">
-            {company.map((item) => (
+            {site.map((item) => (
               <li key={item.title}>
                 <Link
                   href={item.href}
