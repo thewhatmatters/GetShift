@@ -6,6 +6,31 @@ This file provides guidance for Claude Code when working on the Shift project.
 
 Shift is an AI-powered career matching platform that analyzes user experience and shows what careers they're qualified for, plus a 90-day plan to land one. This repo contains the marketing landing page.
 
+## Custom Skills (IMPORTANT)
+
+**Always reference these skills before starting relevant work:**
+
+### Frontend UI Expert (`.claude/skills/frontend-ui-expert/`)
+**Trigger:** Building UI components, reviewing frontend code, fixing UI bugs, improving accessibility, optimizing performance, implementing responsive designs.
+
+**Reference files:**
+- `SKILL.md` - Workflow, component selection, implementation standards
+- `references/tailwind.md` - Utility organization, responsive design, anti-patterns
+- `references/shadcn.md` - Component composition, CVA variants, theming
+- `references/aceternity.md` - When to use, performance costs, accessibility
+- `references/accessibility.md` - WCAG 2.1 AA/AAA checklist, ARIA patterns
+- `references/patterns.md` - Component architecture, layout patterns
+
+### React Email Specialist (`.claude/skills/react-email-specialist/`)
+**Trigger:** Creating email templates, email components, integrating email providers (Resend, SendGrid, etc.), troubleshooting email rendering.
+
+**Reference files:**
+- `SKILL.md` - Quick start, core components, styling, rendering
+- `references/components.md` - Detailed component documentation
+- `references/compatibility.md` - Client-specific considerations (Gmail, Outlook, Apple Mail)
+- `references/integrations.md` - Provider integration examples
+- `references/patterns.md` - Common email template patterns
+
 ## Tech Stack
 
 - **Framework**: Next.js 16.1.1 with App Router and Turbopack
