@@ -45,6 +45,19 @@ Shift is an AI-powered career matching platform that analyzes user experience an
 - `assets/cypress.config.ts` - Ready-to-use Cypress config
 - `assets/github-actions-e2e.yml` - CI/CD workflow for E2E tests
 
+### SEO Expert (`.claude/skills/seo-expert/`)
+**Trigger:** Website optimization, search rankings, SEO audits, content optimization, keyword research, fixing technical SEO issues (Core Web Vitals, schema markup, crawl errors), understanding GSC/GA4 data, link building strategies.
+
+**Reference files:**
+- `SKILL.md` - Workflow decision tree, technical SEO fundamentals, keyword research framework, content optimization
+- `references/technical-seo.md` - Comprehensive audit procedures, crawl optimization
+- `references/keyword-research.md` - Intent mapping, content gap analysis methodology
+- `references/analytics.md` - GSC and GA4 setup, interpretation guides
+- `references/link-building.md` - Ethical tactics, outreach templates
+
+**Assets:**
+- `assets/seo-audit-template.md` - Ready-to-use SEO audit checklist
+
 ## Tech Stack
 
 - **Framework**: Next.js 16.1.1 with App Router and Turbopack
