@@ -92,6 +92,10 @@ Shift is built for professionals who:
 - Need a concrete action plan, not just career advice
 - Want data-driven recommendations based on real market demand
 
+## TO-DO
+
+- [ ] Create `/public/og-image.png` (1200x630px) for social sharing previews
+
 ## License
 
 Private - All rights reserved.
