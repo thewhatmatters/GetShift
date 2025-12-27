@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import { StickyBar } from "@/components/sticky-bar";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { StructuredData } from "@/components/structured-data";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -18,10 +19,73 @@ const inter = Inter({
   weight: ["400", "500", "600", "700"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://getshift.io";
+
 export const metadata: Metadata = {
-  title: "Shift - Discover Your Next Career",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Shift - AI Career Matching | Find Jobs You're Already Qualified For",
+    template: "%s | Shift",
+  },
   description:
-    "Shift analyzes your experience and shows you exactly what careers you're already qualified for — plus a 90-day plan to land one.",
+    "Discover careers you're already qualified for with AI-powered matching. Upload your resume, get personalized job matches, and receive a 90-day action plan to land your next role.",
+  keywords: [
+    "career matching",
+    "AI career advisor",
+    "job matching",
+    "career change",
+    "career pivot",
+    "resume analysis",
+    "career planning",
+    "job search",
+    "career transition",
+    "skills assessment",
+    "career roadmap",
+    "professional development",
+  ],
+  authors: [{ name: "WhatMatters" }],
+  creator: "WhatMatters",
+  publisher: "WhatMatters",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteUrl,
+    siteName: "Shift",
+    title: "Shift - AI Career Matching | Find Jobs You're Already Qualified For",
+    description:
+      "Discover careers you're already qualified for with AI-powered matching. Get a personalized 90-day action plan to land your next role.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Shift - AI-Powered Career Matching Platform",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shift - AI Career Matching | Find Jobs You're Already Qualified For",
+    description:
+      "Discover careers you're already qualified for with AI-powered matching. Get a personalized 90-day action plan.",
+    images: ["/og-image.png"],
+    creator: "@getshiftio",
+  },
+  alternates: {
+    canonical: siteUrl,
+  },
+  category: "technology",
 };
 
 export default function RootLayout({
@@ -32,6 +96,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${manrope.variable} ${inter.variable} antialiased`}>
+        <StructuredData />
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

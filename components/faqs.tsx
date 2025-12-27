@@ -33,7 +33,7 @@ export const FAQs = () => {
     },
   ];
   return (
-    <section className="py-10 md:py-20 lg:py-32 relative overflow-hidden">
+    <section id="faq" className="py-10 md:py-20 lg:py-32 relative overflow-hidden">
       <Container>
         <UserChatIcon />
         <Heading className="my-10 md:my-20">Frequently Asked Questions</Heading>
