@@ -1,0 +1,30 @@
+{
+  "name": "wmds",
+  "version": "1.0.0",
+  "description": "WhatMatters Design System - Figma plugin for generating style guides from CSS themes",
+  "main": "dist/plugin.js",
+  "scripts": {
+    "build": "npm run build:ui && npm run build:plugin",
+    "build:ui": "esbuild src/ui/main.ts --bundle --outfile=dist/ui.js --target=es2020 --format=iife",
+    "build:plugin": "esbuild src/plugin/main.ts --bundle --outfile=dist/plugin.js --target=es2020 --format=iife",
+    "watch": "concurrently \"npm run watch:ui\" \"npm run watch:plugin\"",
+    "watch:ui": "esbuild src/ui/main.ts --bundle --outfile=dist/ui.js --target=es2020 --format=iife --watch",
+    "watch:plugin": "esbuild src/plugin/main.ts --bundle --outfile=dist/plugin.js --target=es2020 --format=iife --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "figma",
+    "plugin",
+    "design-system",
+    "shadcn",
+    "theme"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.98.0",
+    "concurrently": "^8.2.2",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.3.3"
+  }
+}
