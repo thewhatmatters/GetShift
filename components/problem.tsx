@@ -4,7 +4,7 @@ import { Container } from "./container";
 import { Heading } from "./heading";
 import { Subheading } from "./subheading";
 import { cn } from "@/lib/utils";
-import { IconPlus } from "@tabler/icons-react";
+import { IconPlus, IconArrowRight } from "@tabler/icons-react";
 import DottedGlowBackground from "@/components/ui/dotted-glow-background";
 import { ShieldIllustration } from "@/illustrations/general";
 import {
@@ -15,6 +15,7 @@ import {
   IconRipple,
   IconCheck,
   IconLoader2,
+  IconCircleDashed,
 } from "@tabler/icons-react";
 
 export const Problem = () => {
@@ -160,28 +161,162 @@ const CardSkeleton = ({
 
 const SkeletonOne = () => {
   return (
-    <div className="perspective-distant rotate-z-15 -rotate-y-20 rotate-x-30 scale-[1.2] h-full w-full -translate-y-10 mask-radial-from-50% mask-r-from-50%">
-      <SkeletonCard
-        className="absolute bottom-0 left-12 max-w-[90%] z-30"
-        icon={<IconCircleDashedCheck className="size-4" />}
-        title="Product Manager"
-        description="Your experience in project coordination and stakeholder management translates directly to this role."
-        badge={<Badge text="95%" variant="success" />}
+    <div className="perspective-distant rotate-z-15 -rotate-y-20 rotate-x-30 scale-100 h-full w-full mask-b-from-70%">
+      <CareerShiftCard
+        className="absolute top-4 left-14 z-30 shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
+        title="Project Manager"
+        industry="Cybersecurity"
+        score={67}
       />
-      <SkeletonCard
-        className="absolute bottom-8 left-8 z-20"
-        icon={<IconExclamationCircle className="size-4" />}
+      <CareerShiftCard
+        className="absolute top-10 left-7 z-20 bg-neutral-600"
         title="UX Researcher"
-        description="Strong analytical background with customer-facing experience matches this career path."
-        badge={<Badge text="87%" variant="success" />}
+        industry="Tech"
+        score={54}
       />
-      <SkeletonCard
-        className="absolute bottom-20 left-4 max-w-[80%] z-10"
-        icon={<IconPrison className="size-4" />}
+      <CareerShiftCard
+        className="absolute top-16 left-0 z-10 bg-neutral-500"
         title="Operations Lead"
-        description="Process optimization and team leadership skills align well with this opportunity."
-        badge={<Badge text="82%" variant="warning" />}
+        industry="Finance"
+        score={42}
       />
+    </div>
+  );
+};
+
+const CareerShiftCard = ({
+  className,
+  title = "Project Manager",
+  industry = "Cybersecurity",
+  score = 67,
+}: {
+  className?: string;
+  title?: string;
+  industry?: string;
+  score?: number;
+}) => {
+  return (
+    <div className={cn("bg-neutral-950 dark:bg-neutral-950 border border-white/10 rounded-2xl overflow-hidden shadow-md w-[260px]", className)}>
+      {/* Header: Title + Industry + Chart */}
+      <div className="flex gap-4 items-start p-4 border-b border-white/10">
+        <div className="flex-1 flex flex-col gap-1">
+          <p className="text-lg font-medium text-white">{title}</p>
+          <p className="text-sm text-neutral-400">{industry}</p>
+        </div>
+        <CircularProgress value={score} />
+      </div>
+
+      {/* Metrics */}
+      <div className="flex flex-col gap-2 p-4 border-b border-white/10">
+        <MetricRow icon={<IconCircleDashed className="size-3" />} label="Salary Median" value="155k" unit="USD" />
+        <MetricRow icon={<IconCircleDashed className="size-3" />} label="Open Positions" value="1,247" unit="ALL" />
+        <MetricRow icon={<IconCircleDashed className="size-3" />} label="Transition Time" value="90" unit="DAY" />
+        <MetricRow icon={<IconCircleDashed className="size-3" />} label="Growth Rate" value="+23%" unit="YOY" valueColor="text-emerald-500" />
+      </div>
+
+      {/* Progress Bars */}
+      <div className="flex flex-col gap-4 p-4">
+        <ProgressBar label="Market Demand" value={0.89} color="bg-blue-600" />
+        <ProgressBar label="Skill Readiness" value={0.45} color="bg-emerald-500" />
+        <ProgressBar label="Success Probability" value={0.67} color="bg-amber-500" />
+      </div>
+
+      {/* CTA */}
+      <div className="p-4 pt-0">
+        <button className="w-full h-8 bg-neutral-800 hover:bg-neutral-700 rounded-lg flex items-center justify-center gap-2 text-xs font-medium text-white transition-colors">
+          View Details
+          <IconArrowRight className="size-4" />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const CircularProgress = ({ value }: { value: number }) => {
+  const radius = 12;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (value / 100) * circumference;
+
+  return (
+    <div className="relative size-8">
+      <svg className="size-8 -rotate-90" viewBox="0 0 32 32">
+        <circle
+          cx="16"
+          cy="16"
+          r={radius}
+          fill="none"
+          stroke="#171717"
+          strokeWidth="4"
+        />
+        <circle
+          cx="16"
+          cy="16"
+          r={radius}
+          fill="none"
+          stroke="#10b981"
+          strokeWidth="4"
+          strokeDasharray={circumference}
+          strokeDashoffset={strokeDashoffset}
+          strokeLinecap="round"
+        />
+      </svg>
+      <span className="absolute inset-0 flex items-center justify-center text-xs font-semibold text-white">
+        {value}
+      </span>
+    </div>
+  );
+};
+
+const MetricRow = ({
+  icon,
+  label,
+  value,
+  unit,
+  valueColor = "text-white",
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+  unit: string;
+  valueColor?: string;
+}) => {
+  return (
+    <div className="flex items-center justify-between">
+      <div className="flex items-center gap-1 text-neutral-400">
+        {icon}
+        <span className="text-sm">{label}</span>
+      </div>
+      <div className="flex items-end gap-0.5">
+        <span className={cn("text-sm font-medium", valueColor)}>{value}</span>
+        <span className="text-[9px] text-neutral-400">{unit}</span>
+      </div>
+    </div>
+  );
+};
+
+const ProgressBar = ({
+  label,
+  value,
+  color,
+}: {
+  label: string;
+  value: number;
+  color: string;
+}) => {
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex items-center justify-between">
+        <span className="text-sm text-neutral-400 underline decoration-dotted underline-offset-4">
+          {label}
+        </span>
+        <span className="text-sm font-medium text-white">{value.toFixed(2)}</span>
+      </div>
+      <div className="h-2 bg-neutral-800 rounded-full overflow-hidden">
+        <div
+          className={cn("h-full rounded-full", color)}
+          style={{ width: `${value * 100}%` }}
+        />
+      </div>
     </div>
   );
 };
