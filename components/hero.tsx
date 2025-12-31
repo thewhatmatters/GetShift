@@ -5,7 +5,7 @@ import { Heading } from "./heading";
 import { Subheading } from "./subheading";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { LandingImages } from "./landing-images";
+import { HeroDashboardMockup } from "./hero-dashboard-mockup";
 import { GradientDivider } from "./gradient-divider";
 import { IconArrowRight } from "@tabler/icons-react";
 
@@ -32,10 +32,7 @@ export const Hero = () => {
             <Link href="#how-it-works">See How It Works</Link>
           </Button>
         </div>
-        <LandingImages
-          firstImageSrc="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80"
-          secondImageSrc="https://images.unsplash.com/photo-1553028826-f4804a6dba3b?w=1920&q=80"
-        />
+        <HeroDashboardMockup />
       </Container>
       <GradientDivider />
     </section>
