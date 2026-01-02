@@ -1,6 +1,6 @@
 import { Hero } from "@/components/hero";
 import { Problem } from "@/components/problem";
-import { Outcomes } from "@/components/outcomes";
+import { JobsShowcase } from "@/components/jobs-showcase";
 import { Features } from "@/components/features";
 import { Pricing } from "@/components/pricing";
 import { FAQs } from "@/components/faqs";
@@ -11,7 +11,7 @@ export default function Home() {
     <div className="min-h-screen">
       <Hero />
       <Problem />
-      <Outcomes />
+      <JobsShowcase />
       <Features />
       <Pricing />
       <FAQs />

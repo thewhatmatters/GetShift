@@ -113,7 +113,7 @@ export const DesktopNavbar = () => {
           <Link
             key={index}
             href={item.href}
-            className="text-sm text-neutral-600 dark:text-neutral-400 font-medium hover:text-foreground transition-colors"
+            className="text-base text-neutral-600 dark:text-neutral-400 font-medium hover:text-foreground transition-colors"
           >
             {item.title}
           </Link>

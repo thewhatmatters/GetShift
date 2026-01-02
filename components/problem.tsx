@@ -163,19 +163,19 @@ const SkeletonOne = () => {
   return (
     <div className="perspective-distant rotate-z-15 -rotate-y-20 rotate-x-30 scale-100 h-full w-full mask-b-from-70%">
       <CareerShiftCard
-        className="absolute top-4 left-14 z-30 shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
+        className="absolute top-4 left-14 z-30 shadow-[0_8px_30px_rgba(0,0,0,0.15)]"
         title="Project Manager"
-        industry="Cybersecurity"
-        score={67}
+        industry="Fintech & Payment Systems"
+        score={83}
       />
       <CareerShiftCard
-        className="absolute top-10 left-7 z-20 bg-neutral-600"
+        className="absolute top-10 left-7 z-20 bg-neutral-100 border-neutral-300"
         title="UX Researcher"
         industry="Tech"
         score={54}
       />
       <CareerShiftCard
-        className="absolute top-16 left-0 z-10 bg-neutral-500"
+        className="absolute top-16 left-0 z-10 bg-neutral-200 border-neutral-300"
         title="Operations Lead"
         industry="Finance"
         score={42}
@@ -187,8 +187,8 @@ const SkeletonOne = () => {
 const CareerShiftCard = ({
   className,
   title = "Project Manager",
-  industry = "Cybersecurity",
-  score = 67,
+  industry = "Fintech & Payment Systems",
+  score = 83,
 }: {
   className?: string;
   title?: string;
@@ -196,18 +196,18 @@ const CareerShiftCard = ({
   score?: number;
 }) => {
   return (
-    <div className={cn("bg-neutral-950 dark:bg-neutral-950 border border-white/10 rounded-2xl overflow-hidden shadow-md w-[260px]", className)}>
+    <div className={cn("bg-white border border-neutral-200 rounded-2xl overflow-hidden shadow-md w-[260px]", className)}>
       {/* Header: Title + Industry + Chart */}
-      <div className="flex gap-4 items-start p-4 border-b border-white/10">
+      <div className="flex gap-4 items-start p-4 border-b border-neutral-200">
         <div className="flex-1 flex flex-col gap-1">
-          <p className="text-lg font-medium text-white">{title}</p>
-          <p className="text-sm text-neutral-400">{industry}</p>
+          <p className="text-lg font-medium text-neutral-900">{title}</p>
+          <p className="text-sm text-neutral-500">{industry}</p>
         </div>
         <CircularProgress value={score} />
       </div>
 
       {/* Metrics */}
-      <div className="flex flex-col gap-2 p-4 border-b border-white/10">
+      <div className="flex flex-col gap-2 p-4 border-b border-neutral-200">
         <MetricRow icon={<IconCircleDashed className="size-3" />} label="Salary Median" value="155k" unit="USD" />
         <MetricRow icon={<IconCircleDashed className="size-3" />} label="Open Positions" value="1,247" unit="ALL" />
         <MetricRow icon={<IconCircleDashed className="size-3" />} label="Transition Time" value="90" unit="DAY" />
@@ -216,14 +216,14 @@ const CareerShiftCard = ({
 
       {/* Progress Bars */}
       <div className="flex flex-col gap-4 p-4">
-        <ProgressBar label="Market Demand" value={0.89} color="bg-blue-600" />
-        <ProgressBar label="Skill Readiness" value={0.45} color="bg-emerald-500" />
-        <ProgressBar label="Success Probability" value={0.67} color="bg-amber-500" />
+        <ProgressBar label="Market Demand" value={0.89} color="bg-orange-500" />
+        <ProgressBar label="Skill Readiness" value={0.89} color="bg-teal-600" />
+        <ProgressBar label="Success Probability" value={0.69} color="bg-neutral-300" />
       </div>
 
       {/* CTA */}
       <div className="p-4 pt-0">
-        <button className="w-full h-8 bg-neutral-800 hover:bg-neutral-700 rounded-lg flex items-center justify-center gap-2 text-xs font-medium text-white transition-colors">
+        <button className="w-full h-10 bg-neutral-100 hover:bg-neutral-200 rounded-lg flex items-center justify-center gap-2 text-sm font-medium text-neutral-900 transition-colors">
           View Details
           <IconArrowRight className="size-4" />
         </button>
@@ -233,34 +233,34 @@ const CareerShiftCard = ({
 };
 
 const CircularProgress = ({ value }: { value: number }) => {
-  const radius = 12;
+  const radius = 14;
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (value / 100) * circumference;
 
   return (
-    <div className="relative size-8">
-      <svg className="size-8 -rotate-90" viewBox="0 0 32 32">
+    <div className="relative size-10">
+      <svg className="size-10 -rotate-90" viewBox="0 0 36 36">
         <circle
-          cx="16"
-          cy="16"
+          cx="18"
+          cy="18"
           r={radius}
           fill="none"
-          stroke="#171717"
-          strokeWidth="4"
+          stroke="#e5e5e5"
+          strokeWidth="3"
         />
         <circle
-          cx="16"
-          cy="16"
+          cx="18"
+          cy="18"
           r={radius}
           fill="none"
           stroke="#10b981"
-          strokeWidth="4"
+          strokeWidth="3"
           strokeDasharray={circumference}
           strokeDashoffset={strokeDashoffset}
           strokeLinecap="round"
         />
       </svg>
-      <span className="absolute inset-0 flex items-center justify-center text-xs font-semibold text-white">
+      <span className="absolute inset-0 flex items-center justify-center text-sm font-semibold text-neutral-900">
         {value}
       </span>
     </div>
@@ -272,7 +272,7 @@ const MetricRow = ({
   label,
   value,
   unit,
-  valueColor = "text-white",
+  valueColor = "text-neutral-900",
 }: {
   icon: React.ReactNode;
   label: string;
@@ -282,7 +282,7 @@ const MetricRow = ({
 }) => {
   return (
     <div className="flex items-center justify-between">
-      <div className="flex items-center gap-1 text-neutral-400">
+      <div className="flex items-center gap-1 text-neutral-500">
         {icon}
         <span className="text-sm">{label}</span>
       </div>
@@ -304,14 +304,14 @@ const ProgressBar = ({
   color: string;
 }) => {
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-2">
       <div className="flex items-center justify-between">
-        <span className="text-sm text-neutral-400 underline decoration-dotted underline-offset-4">
+        <span className="text-sm text-neutral-500">
           {label}
         </span>
-        <span className="text-sm font-medium text-white">{value.toFixed(2)}</span>
+        <span className="text-sm font-medium text-neutral-900">{value.toFixed(2)}</span>
       </div>
-      <div className="h-2 bg-neutral-800 rounded-full overflow-hidden">
+      <div className="h-2 bg-neutral-100 rounded-full overflow-hidden">
         <div
           className={cn("h-full rounded-full", color)}
           style={{ width: `${value * 100}%` }}

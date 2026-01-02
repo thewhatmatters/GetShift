@@ -15,7 +15,7 @@ export const Subheading = ({
   return (
     <Tag
       className={cn(
-        "text-base md:text-lg  text-neutral-500 dark:text-neutral-400 font-inter max-w-xl",
+        "text-base md:text-lg text-neutral-500 dark:text-neutral-400 max-w-xl",
         className
       )}
     >

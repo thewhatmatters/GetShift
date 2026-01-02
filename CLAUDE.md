@@ -64,7 +64,9 @@ Shift is an AI-powered career matching platform that analyzes user experience an
 - **Styling**: Tailwind CSS v4 (uses `@theme` directive, oklch colors)
 - **Animations**: Motion (motion/react) - formerly Framer Motion
 - **Icons**: @tabler/icons-react
-- **UI Components**: Custom components with shadcn/ui patterns
+- **UI Components (Marketing Site)**: Custom components with shadcn/ui patterns
+- **UI Components (App)**: Kibo UI (https://www.kibo-ui.com/)
+- **Charts**: Tremor (https://tremor.so/)
 - **TypeScript**: Strict mode enabled
 
 ## Commands

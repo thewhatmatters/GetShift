@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Manrope } from "next/font/google";
+import { Inter, Anek_Latin } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { StickyBar } from "@/components/sticky-bar";
@@ -7,10 +7,10 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { StructuredData } from "@/components/structured-data";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const anekLatin = Anek_Latin({
+  variable: "--font-anek",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 const inter = Inter({
@@ -95,7 +95,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${manrope.variable} ${inter.variable} antialiased`}>
+      <body className={`${anekLatin.variable} ${inter.variable} antialiased`} suppressHydrationWarning>
         <StructuredData />
         <ThemeProvider
           attribute="class"
