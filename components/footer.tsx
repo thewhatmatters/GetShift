@@ -35,7 +35,7 @@ export const Footer = () => {
           <Button className="shadow-brand">Start a 30-day trial</Button>
         </div>
         <div className="flex flex-col gap-4">
-          <h4 className="text-base font-medium text-neutral-400">Site</h4>
+          <h4 className="text-base font-medium text-neutral-600 dark:text-neutral-400">Site</h4>
           <ul className="list-none flex flex-col gap-2">
             {site.map((item) => (
               <li key={item.title}>
@@ -50,14 +50,14 @@ export const Footer = () => {
           </ul>
         </div>
         <div className="flex flex-col gap-4">
-          <h4 className="text-base font-medium text-neutral-400">Newsletter</h4>
+          <h4 className="text-base font-medium text-neutral-600 dark:text-neutral-400">Newsletter</h4>
           <div className="border relative border-neutral-200  flex items-center justify-center bg-neutral-100 dark:bg-neutral-800 dark:border-neutral-700 rounded-md">
             <input
               className="bg-transparent outline-none py-2 pl-2 pr-12 placeholder-neutral-400 text-neutral-600 text-sm"
               type="email"
               placeholder="Your email"
             />
-            <button className="cursor-pointer px-4 py-2 rounded-[7px] bg-black inset-y-0 right-0 absolute">
+            <button className="cursor-pointer px-4 py-2 rounded-[7px] bg-black inset-y-0 right-0 absolute" aria-label="Subscribe to newsletter">
               <IconSend className="text-white size-4" />
             </button>
           </div>
@@ -81,13 +81,13 @@ export const Footer = () => {
           </div>
           <div className="flex items-center gap-4">
             <ModeToggle />
-            <Link href="/">
+            <Link href="/" aria-label="Follow us on Twitter">
               <IconBrandTwitter className="size-4" />
             </Link>
-            <Link href="/">
+            <Link href="/" aria-label="Follow us on Instagram">
               <IconBrandInstagram className="size-4" />
             </Link>
-            <Link href="/">
+            <Link href="/" aria-label="Connect on LinkedIn">
               <IconBrandLinkedin className="size-4" />
             </Link>
           </div>

@@ -37,9 +37,9 @@ export const Features = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 border-y border-neutral-200 dark:border-neutral-800 divide-neutral-200 dark:divide-neutral-800">
           <div className="md:border-r border-b border-neutral-200 dark:border-neutral-800">
             <CardContent>
-              <h2 className="text-lg font-bold text-neutral-800 dark:text-neutral-200">
+              <h3 className="text-lg font-bold text-neutral-800 dark:text-neutral-200">
                 Career Match Analysis
-              </h2>
+              </h3>
               <CardDescription>
                 AI-powered analysis of your experience to identify 10+ career paths you&apos;re already qualified for.
               </CardDescription>
@@ -50,9 +50,9 @@ export const Features = () => {
           </div>
           <div className="border-b border-neutral-200 dark:border-neutral-800">
             <CardContent>
-              <h2 className="text-lg font-bold text-neutral-800 dark:text-neutral-200">
+              <h3 className="text-lg font-bold text-neutral-800 dark:text-neutral-200">
                 90-Day Action Plan
-              </h2>
+              </h3>
               <CardDescription>
                 A personalized roadmap with specific actions, timelines, and milestones to land your target role.
               </CardDescription>
@@ -63,9 +63,9 @@ export const Features = () => {
           </div>
           <div className="md:border-r border-b md:border-b-0 border-neutral-200 dark:border-neutral-800">
             <CardContent>
-              <h2 className="text-lg font-bold text-neutral-800 dark:text-neutral-200">
+              <h3 className="text-lg font-bold text-neutral-800 dark:text-neutral-200">
                 Skill Gap Report
-              </h2>
+              </h3>
               <CardDescription>
                 Know exactly what&apos;s missing — and what you can skip. We highlight the fastest paths.
               </CardDescription>
@@ -76,9 +76,9 @@ export const Features = () => {
           </div>
           <div className="dark:border-neutral-800">
             <CardContent>
-              <h2 className="text-lg font-bold text-neutral-800 dark:text-neutral-200">
+              <h3 className="text-lg font-bold text-neutral-800 dark:text-neutral-200">
                 LinkedIn Optimization
-              </h2>
+              </h3>
               <CardDescription>
                 Strategic recommendations to position your profile for career changers.
               </CardDescription>

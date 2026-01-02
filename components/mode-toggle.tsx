@@ -45,6 +45,7 @@ export const ModeToggle = () => {
     <button
       onClick={SWITCH}
       className="size-4 flex items-center justify-center relative"
+      aria-label="Toggle dark mode"
     >
       <SunIcon
         size={14}
