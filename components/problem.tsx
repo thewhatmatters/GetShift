@@ -532,18 +532,33 @@ const Pattern = () => {
 
 const SkeletonThree = () => {
   return (
-    <div className="relative h-full w-full flex items-center justify-center p-4">
-      <div className="w-full max-w-[280px]">
-        <RadarChart />
+    <div className="perspective-distant h-full flex items-center justify-center">
+      <div
+        style={{
+          transform: "rotateY(-15deg) rotateX(15deg) rotateZ(10deg)",
+        }}
+        className="w-[85%] bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-700 shadow-2xl overflow-hidden -translate-x-4"
+      >
+        {/* Card Header */}
+        <div className="px-4 py-3 border-b border-neutral-200 dark:border-neutral-700">
+          <p className="text-xs font-semibold text-neutral-900 dark:text-white">Skills Gap Analysis</p>
+          <p className="text-[10px] text-neutral-500 mt-0.5">Project Manager Role</p>
+        </div>
+
+        {/* Chart */}
+        <div className="px-2 py-2">
+          <RadarChart />
+        </div>
+
         {/* Legend */}
-        <div className="flex items-center justify-center gap-6 mt-2">
+        <div className="px-4 py-2 border-t border-neutral-200 dark:border-neutral-700 flex items-center justify-center gap-6">
           <div className="flex items-center gap-1.5">
-            <div className="size-2.5 rounded-sm bg-blue-200" />
-            <span className="text-[10px] text-neutral-500">Required</span>
+            <div className="size-2 rounded-sm bg-blue-200" />
+            <span className="text-[9px] text-neutral-500">Required</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="size-2.5 rounded-sm bg-blue-500" />
-            <span className="text-[10px] text-neutral-500">Your Skills</span>
+            <div className="size-2 rounded-sm bg-blue-500" />
+            <span className="text-[9px] text-neutral-500">Your Skills</span>
           </div>
         </div>
       </div>
