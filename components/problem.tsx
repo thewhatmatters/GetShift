@@ -399,52 +399,89 @@ const SkeletonTwo = () => {
         transform: "rotateY(20deg) rotateX(20deg) rotateZ(-20deg)",
       }}
       className={cn(
-        "max-w-[85%] group h-full my-auto bg-neutral-100 dark:bg-neutral-900 mx-auto w-full p-3 rounded-2xl border border-neutral-300 dark:border-neutral-700 shadow-2xl flex flex-col mask-radial-from-50% mask-b-from-50%",
-        "translate-x-10",
-        "[--pattern-fg:var(--color-neutral-950)]/5 dark:[--pattern-fg:var(--color-white)]/10"
+        "max-w-[90%] group h-full my-auto bg-white dark:bg-neutral-900 mx-auto w-full rounded-2xl border border-neutral-200 dark:border-neutral-700 shadow-2xl flex flex-col mask-b-from-60% overflow-hidden",
+        "translate-x-6"
       )}
     >
-      <div className="flex gap-3 items-center">
-        <IconCircleDashedCheck className="size-4" />
-        <p className="text-sm font-normal text-black dark:text-white">
-          90-Day Action Plan
+      {/* Gantt Header */}
+      <div className="flex items-center justify-between px-4 py-2 border-b border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800">
+        <span className="text-[10px] font-semibold text-neutral-500 uppercase tracking-wider">Tasks</span>
+        <span className="text-[10px] font-semibold text-neutral-500 uppercase tracking-wider">Duration</span>
+      </div>
+
+      {/* Phase Header */}
+      <div className="px-4 py-2 bg-neutral-100 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700">
+        <p className="text-[10px] font-bold text-neutral-900 dark:text-white uppercase tracking-wide">
+          Experience Phase <span className="font-normal text-neutral-500">(Weeks 5-8)</span>
         </p>
       </div>
-      <div className="relative flex-1 bg-neutral-200 dark:bg-neutral-800 dark:border-neutral-700 mt-4 border border-neutral-200 rounded-2xl">
-        <Pattern />
-        <div className="absolute rounded-2xl translate-x-2 -translate-y-2 group-hover:translate-x-0 group-hover:-translate-y-0 transition-all duration-300 inset-0 bg-white dark:bg-neutral-900 h-full w-full">
-          <Row
-            icon={<IconCheck className="size-3 stroke-white fill-green-500" />}
-            text="Skills Assessment"
-            time="Week 1"
-          />
-          <GradientHr />
-          <Row
-            icon={<IconCheck className="size-3 stroke-white fill-green-500" />}
-            text="Resume Optimization"
-            time="Week 2"
-          />
-          <GradientHr />
-          <Row
-            icon={<IconCheck className="size-3 stroke-white fill-green-500" />}
-            text="LinkedIn Updates"
-            time="Week 3"
-          />
-          <GradientHr />
-          <Row
-            icon={<IconCheck className="size-3 stroke-white fill-green-500" />}
-            text="Networking Strategy"
-            time="Week 4"
-          />
-          <GradientHr />
-          <Row
-            icon={<IconLoader2 className="size-3 text-white animate-spin" />}
-            text="Interview Prep"
-            time="Week 5+"
-            variant="warning"
-          />
+
+      {/* Tasks */}
+      <GanttRow status="done" task="Volunteer PM for nonprofit" duration="4 weeks" isChild />
+      <GanttRow status="done" task="Lead internal project at work" duration="4 weeks" isChild />
+      <GanttRow status="warning" task="Build PM portfolio (3 cases)" duration="3 weeks" isChild />
+      <GanttRow status="tbd" task="Document measurable outcomes" duration="2 weeks" isChild />
+
+      {/* Phase Header */}
+      <div className="px-4 py-2 bg-neutral-100 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700">
+        <p className="text-[10px] font-bold text-neutral-900 dark:text-white uppercase tracking-wide">
+          Launch Phase <span className="font-normal text-neutral-500">(Weeks 9-12)</span>
+        </p>
+      </div>
+
+      <GanttRow status="tbd" task="Resume tailored to PM" duration="1 week" isChild />
+      <GanttRow status="tbd" task="Interview prep & mock interviews" duration="2 weeks" isChild />
+      <GanttRow status="tbd" task="Company research & targeting" duration="Ongoing" isChild />
+
+      {/* Legend */}
+      <div className="mt-auto px-4 py-2 border-t border-neutral-200 dark:border-neutral-700 flex items-center gap-4">
+        <div className="flex items-center gap-1">
+          <div className="size-2 rounded-full bg-emerald-500" />
+          <span className="text-[9px] text-neutral-500 uppercase">Done</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <div className="size-2 rounded-full bg-amber-500" />
+          <span className="text-[9px] text-neutral-500 uppercase">In Progress</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <div className="size-2 rounded-full bg-neutral-400" />
+          <span className="text-[9px] text-neutral-500 uppercase">TBD</span>
         </div>
       </div>
+    </div>
+  );
+};
+
+const GanttRow = ({
+  status,
+  task,
+  duration,
+  isChild = false,
+}: {
+  status: "done" | "warning" | "tbd";
+  task: string;
+  duration: string;
+  isChild?: boolean;
+}) => {
+  return (
+    <div className="flex items-center justify-between px-4 py-1.5 border-b border-neutral-100 dark:border-neutral-800">
+      <div className="flex items-center gap-2">
+        <div
+          className={cn(
+            "size-2 rounded-full shrink-0",
+            status === "done" && "bg-emerald-500",
+            status === "warning" && "bg-amber-500",
+            status === "tbd" && "bg-neutral-400"
+          )}
+        />
+        <span className={cn(
+          "text-[10px] text-neutral-700 dark:text-neutral-300 truncate max-w-[140px]",
+          isChild && "pl-1"
+        )}>
+          {task}
+        </span>
+      </div>
+      <span className="text-[9px] text-neutral-500 whitespace-nowrap">{duration}</span>
     </div>
   );
 };
