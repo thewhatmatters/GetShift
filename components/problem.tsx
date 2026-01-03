@@ -5,8 +5,6 @@ import { Heading } from "./heading";
 import { Subheading } from "./subheading";
 import { cn } from "@/lib/utils";
 import { IconPlus, IconArrowRight } from "@tabler/icons-react";
-import DottedGlowBackground from "@/components/ui/dotted-glow-background";
-import { ShieldIllustration } from "@/illustrations/general";
 import {
   IconCircleDashedCheck,
   IconClock,
@@ -394,15 +392,13 @@ const Badge = ({
 
 const SkeletonTwo = () => {
   return (
-    <div
-      style={{
-        transform: "rotateY(20deg) rotateX(20deg) rotateZ(-20deg)",
-      }}
-      className={cn(
-        "max-w-[90%] group h-full my-auto bg-white dark:bg-neutral-900 mx-auto w-full rounded-2xl border border-neutral-200 dark:border-neutral-700 shadow-2xl flex flex-col mask-b-from-60% overflow-hidden",
-        "translate-x-6"
-      )}
-    >
+    <div className="perspective-distant h-full flex items-center justify-center">
+      <div
+        style={{
+          transform: "rotateY(15deg) rotateX(15deg) rotateZ(-10deg)",
+        }}
+        className="w-[85%] bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-700 shadow-2xl flex flex-col overflow-hidden translate-x-4"
+      >
       {/* Gantt Header */}
       <div className="flex items-center justify-between px-4 py-2 border-b border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800">
         <span className="text-[10px] font-semibold text-neutral-500 uppercase tracking-wider">Tasks</span>
@@ -447,6 +443,7 @@ const SkeletonTwo = () => {
           <div className="size-2 rounded-full bg-neutral-400" />
           <span className="text-[9px] text-neutral-500 uppercase">TBD</span>
         </div>
+      </div>
       </div>
     </div>
   );
@@ -535,22 +532,147 @@ const Pattern = () => {
 
 const SkeletonThree = () => {
   return (
-    <div className="relative h-full w-full flex items-center justify-center">
-      <ShieldIllustration />
-      <DottedGlowBackground
-        className="pointer-events-none mask-radial-to-70% mask-radial-at-center"
-        opacity={1}
-        gap={10}
-        radius={1.6}
-        colorLightVar="--color-neutral-500"
-        glowColorLightVar="--color-neutral-600"
-        colorDarkVar="--color-neutral-500"
-        glowColorDarkVar="--color-sky-800"
-        backgroundOpacity={0}
-        speedMin={0.3}
-        speedMax={1.6}
-        speedScale={1}
-      />
+    <div className="relative h-full w-full flex items-center justify-center p-4">
+      <div className="w-full max-w-[280px]">
+        <RadarChart />
+        {/* Legend */}
+        <div className="flex items-center justify-center gap-6 mt-2">
+          <div className="flex items-center gap-1.5">
+            <div className="size-2.5 rounded-sm bg-blue-200" />
+            <span className="text-[10px] text-neutral-500">Required</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <div className="size-2.5 rounded-sm bg-blue-500" />
+            <span className="text-[10px] text-neutral-500">Your Skills</span>
+          </div>
+        </div>
+      </div>
     </div>
+  );
+};
+
+const RadarChart = () => {
+  const skills = [
+    { name: "Leadership", required: 0.9, current: 0.75 },
+    { name: "Communication", required: 0.95, current: 0.85 },
+    { name: "Risk Mgmt", required: 0.8, current: 0.5 },
+    { name: "Stakeholders", required: 0.85, current: 0.7 },
+    { name: "Agile/Scrum", required: 0.75, current: 0.4 },
+    { name: "Budgeting", required: 0.7, current: 0.55 },
+  ];
+
+  const centerX = 140;
+  const centerY = 120;
+  const maxRadius = 80;
+  const levels = 4;
+
+  // Calculate point position on radar
+  const getPoint = (index: number, value: number) => {
+    const angle = (Math.PI * 2 * index) / skills.length - Math.PI / 2;
+    const radius = maxRadius * value;
+    return {
+      x: centerX + radius * Math.cos(angle),
+      y: centerY + radius * Math.sin(angle),
+    };
+  };
+
+  // Generate polygon points string
+  const getPolygonPoints = (values: number[]) => {
+    return values
+      .map((value, index) => {
+        const point = getPoint(index, value);
+        return `${point.x},${point.y}`;
+      })
+      .join(" ");
+  };
+
+  // Grid levels
+  const gridLevels = Array.from({ length: levels }, (_, i) => (i + 1) / levels);
+
+  return (
+    <svg viewBox="0 0 280 240" className="w-full">
+      {/* Grid circles/polygons */}
+      {gridLevels.map((level) => (
+        <polygon
+          key={level}
+          points={getPolygonPoints(skills.map(() => level))}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1"
+          className="text-neutral-200 dark:text-neutral-700"
+        />
+      ))}
+
+      {/* Axis lines */}
+      {skills.map((_, index) => {
+        const point = getPoint(index, 1);
+        return (
+          <line
+            key={index}
+            x1={centerX}
+            y1={centerY}
+            x2={point.x}
+            y2={point.y}
+            stroke="currentColor"
+            strokeWidth="1"
+            className="text-neutral-200 dark:text-neutral-700"
+          />
+        );
+      })}
+
+      {/* Required skills area (light) */}
+      <polygon
+        points={getPolygonPoints(skills.map((s) => s.required))}
+        fill="currentColor"
+        fillOpacity="0.3"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        className="text-blue-300 dark:text-blue-400"
+      />
+
+      {/* Current skills area (dark) */}
+      <polygon
+        points={getPolygonPoints(skills.map((s) => s.current))}
+        fill="currentColor"
+        fillOpacity="0.6"
+        stroke="currentColor"
+        strokeWidth="2"
+        className="text-blue-500 dark:text-blue-500"
+      />
+
+      {/* Data points for current skills */}
+      {skills.map((skill, index) => {
+        const point = getPoint(index, skill.current);
+        return (
+          <circle
+            key={index}
+            cx={point.x}
+            cy={point.y}
+            r="3"
+            fill="currentColor"
+            className="text-blue-600 dark:text-blue-400"
+          />
+        );
+      })}
+
+      {/* Labels */}
+      {skills.map((skill, index) => {
+        const point = getPoint(index, 1.25);
+        const isTop = index === 0;
+        const isBottom = index === 3;
+        return (
+          <text
+            key={index}
+            x={point.x}
+            y={point.y}
+            textAnchor="middle"
+            dominantBaseline={isTop ? "auto" : isBottom ? "hanging" : "middle"}
+            className="fill-neutral-600 dark:fill-neutral-400 text-[9px] font-medium"
+          >
+            {skill.name}
+          </text>
+        );
+      })}
+    </svg>
   );
 };
