@@ -29,7 +29,7 @@ export const Hero = () => {
             </Link>
           </Button>
           <Button asChild variant="outline" size="lg">
-            <Link href="#how-it-works">See How It Works</Link>
+            <Link href="#how-it-works">View Sample Report</Link>
           </Button>
         </div>
         <HeroDashboardMockup />
