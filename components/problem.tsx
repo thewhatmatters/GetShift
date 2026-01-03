@@ -43,10 +43,10 @@ export const Problem = () => {
         </Card>
         <Card>
           <CardSkeleton>
-            <SkeletonTwo />
+            <SkeletonThree />
           </CardSkeleton>
           <CardContent>
-            <CardTitle>Personalized 90-Day Roadmap</CardTitle>
+            <CardTitle>Skills Analysis & Gap Reports</CardTitle>
             <CardCTA>
               <IconPlus />
             </CardCTA>
@@ -54,10 +54,10 @@ export const Problem = () => {
         </Card>
         <Card className="rounded-tr-3xl rounded-br-3xl">
           <CardSkeleton>
-            <SkeletonThree />
+            <SkeletonTwo />
           </CardSkeleton>
           <CardContent>
-            <CardTitle>Skills Analysis & Gap Reports</CardTitle>
+            <CardTitle>Personalized 90-Day Roadmap</CardTitle>
             <CardCTA>
               <IconPlus />
             </CardCTA>
@@ -395,9 +395,9 @@ const SkeletonTwo = () => {
     <div className="perspective-distant h-full flex items-center justify-center">
       <div
         style={{
-          transform: "rotateY(15deg) rotateX(15deg) rotateZ(-10deg)",
+          transform: "rotateY(-15deg) rotateX(15deg) rotateZ(10deg)",
         }}
-        className="w-[85%] bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-700 shadow-2xl flex flex-col overflow-hidden translate-x-4"
+        className="w-[85%] bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-700 shadow-2xl flex flex-col overflow-hidden -translate-x-4"
       >
       {/* Gantt Header */}
       <div className="flex items-center justify-between px-4 py-2 border-b border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800">
@@ -535,9 +535,9 @@ const SkeletonThree = () => {
     <div className="perspective-distant h-full flex items-center justify-center">
       <div
         style={{
-          transform: "rotateY(-15deg) rotateX(15deg) rotateZ(10deg)",
+          transform: "rotateY(15deg) rotateX(15deg) rotateZ(-10deg)",
         }}
-        className="w-[75%] bg-white dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-700 shadow-2xl overflow-hidden -translate-x-2 translate-y-2"
+        className="w-[75%] bg-white dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-700 shadow-2xl overflow-hidden translate-x-4"
       >
         {/* Card Header */}
         <div className="px-4 py-3 border-b border-neutral-200 dark:border-neutral-700">
