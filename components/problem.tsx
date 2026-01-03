@@ -537,7 +537,7 @@ const SkeletonThree = () => {
         style={{
           transform: "rotateY(-15deg) rotateX(15deg) rotateZ(10deg)",
         }}
-        className="w-[85%] bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-700 shadow-2xl overflow-hidden -translate-x-4"
+        className="w-[75%] bg-white dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-700 shadow-2xl overflow-hidden -translate-x-2 translate-y-2"
       >
         {/* Card Header */}
         <div className="px-4 py-3 border-b border-neutral-200 dark:border-neutral-700">
@@ -576,9 +576,9 @@ const RadarChart = () => {
     { name: "Budgeting", required: 0.7, current: 0.55 },
   ];
 
-  const centerX = 140;
-  const centerY = 120;
-  const maxRadius = 80;
+  const centerX = 110;
+  const centerY = 90;
+  const maxRadius = 55;
   const levels = 4;
 
   // Calculate point position on radar
@@ -605,7 +605,7 @@ const RadarChart = () => {
   const gridLevels = Array.from({ length: levels }, (_, i) => (i + 1) / levels);
 
   return (
-    <svg viewBox="0 0 280 240" className="w-full">
+    <svg viewBox="0 0 220 180" className="w-full">
       {/* Grid circles/polygons */}
       {gridLevels.map((level) => (
         <polygon
