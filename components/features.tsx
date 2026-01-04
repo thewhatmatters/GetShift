@@ -28,6 +28,12 @@ import {
   IconFeatherFilled,
   IconPointerUp,
   IconFilter2Search,
+  IconFileText,
+  IconBrandLinkedin,
+  IconUsers,
+  IconSend,
+  IconMessageCircle,
+  IconTarget,
 } from "@tabler/icons-react";
 
 export const Features = () => {
@@ -292,29 +298,29 @@ const CardItem = ({
 
 const SkeletonTwo = () => {
   return (
-    <div className="flex-1 rounded-t-3xl gap-4 space-y-4 w-full h-full px-8 flex-col items-center justify-center">
-      <div className="grid grid-cols-4 gap-2 justify-center max-w-md mx-auto">
-        <Item />
-        <Item src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1364" />
-        <Item src="https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1287" />
-        <Item />
+    <div className="flex-1 rounded-t-3xl space-y-2 w-full h-full px-4 flex flex-col items-center justify-center">
+      <div className="flex gap-2 justify-center">
+        <Item fixed />
+        <Item fixed icon={<IconClipboardData className="size-7" />} color="blue" />
+        <Item fixed icon={<IconFileText className="size-7" />} color="indigo" />
+        <Item fixed />
       </div>
-      <div className="grid grid-cols-5 gap-2">
-        <Item />
-        <Item src="https://images.unsplash.com/photo-1654110455429-cf322b40a906?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1760" />
-        <Item containerClassName="from-black/50 via-transparent to-black/50">
+      <div className="flex gap-2 justify-center">
+        <Item fixed />
+        <Item fixed icon={<IconBrandLinkedin className="size-7" />} color="sky" />
+        <Item fixed containerClassName="from-emerald-500/50 via-transparent to-emerald-500/50">
           <div className="h-full w-full bg-white dark:bg-neutral-900 rounded-[12px] flex items-center justify-center">
-            <LogoIcon className="size-12" />
+            <LogoIcon className="size-10" />
           </div>
         </Item>
-        <Item src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1760" />
-        <Item />
+        <Item fixed icon={<IconUsers className="size-7" />} color="violet" />
+        <Item fixed />
       </div>
-      <div className="grid grid-cols-4 justify-center max-w-md mx-auto gap-2">
-        <Item />
-        <Item src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1287" />
-        <Item src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2670" />
-        <Item />
+      <div className="flex gap-2 justify-center">
+        <Item fixed />
+        <Item fixed icon={<IconSend className="size-7" />} color="amber" />
+        <Item fixed icon={<IconTarget className="size-7" />} color="emerald" />
+        <Item fixed />
       </div>
     </div>
   );
@@ -324,18 +330,32 @@ const Item = ({
   children,
   className,
   containerClassName,
-  src,
+  icon,
+  color,
+  fixed,
 }: {
   children?: React.ReactNode;
   className?: string;
   containerClassName?: string;
-  src?: string;
+  icon?: React.ReactNode;
+  color?: "blue" | "indigo" | "sky" | "violet" | "amber" | "emerald";
+  fixed?: boolean;
 }) => {
+  const colorClasses = {
+    blue: "bg-blue-100 text-blue-600 border-blue-200 dark:bg-blue-500/20 dark:text-blue-400 dark:border-blue-500/30",
+    indigo: "bg-indigo-100 text-indigo-600 border-indigo-200 dark:bg-indigo-500/20 dark:text-indigo-400 dark:border-indigo-500/30",
+    sky: "bg-sky-100 text-sky-600 border-sky-200 dark:bg-sky-500/20 dark:text-sky-400 dark:border-sky-500/30",
+    violet: "bg-violet-100 text-violet-600 border-violet-200 dark:bg-violet-500/20 dark:text-violet-400 dark:border-violet-500/30",
+    amber: "bg-amber-100 text-amber-600 border-amber-200 dark:bg-amber-500/20 dark:text-amber-400 dark:border-amber-500/30",
+    emerald: "bg-emerald-100 text-emerald-600 border-emerald-200 dark:bg-emerald-500/20 dark:text-emerald-400 dark:border-emerald-500/30",
+  };
+
   return (
     <div
       className={cn(
-        "w-full justify-self-center aspect-square rounded-xl border border-dashed border-neutral-200 dark:border-neutral-800 relative p-[1px]",
-        "[--pattern-fg:var(--color-neutral-950)]/5 dark:[--pattern-fg:var(--color-neutral)]/10"
+        "rounded-xl border border-dashed border-neutral-200 dark:border-neutral-800 relative p-[1px]",
+        "[--pattern-fg:var(--color-neutral-950)]/5 dark:[--pattern-fg:var(--color-neutral)]/10",
+        fixed ? "size-16" : "w-full aspect-square"
       )}
     >
       <motion.div
@@ -353,20 +373,16 @@ const Item = ({
         }}
         className={cn(
           "flex items-center justify-center w-full h-full rounded-[12px] p-[1px] relative z-10",
-          src && "bg-gradient-to-br from-blue-500 via-transparent to-blue-500",
+          icon && color && `bg-gradient-to-br from-${color}-500 via-transparent to-${color}-500`,
           containerClassName
         )}
       >
         {children ?? (
           <>
-            {src && (
-              <Image
-                src={src}
-                height={120}
-                width={120}
-                alt="item"
-                className="object-cover aspect-square rounded-[12px] relative z-20"
-              />
+            {icon && color && (
+              <div className={cn("h-full w-full rounded-[12px] flex items-center justify-center border", colorClasses[color])}>
+                {icon}
+              </div>
             )}
           </>
         )}
@@ -396,11 +412,11 @@ const SkeletonThree = () => {
       >
         <div className="px-4 py-2 rounded-full bg-orange-100 border border-orange-300 text-orange-500 font-medium flex items-center gap-2">
           <IconSettings className="size-4" />
-          <span>Processing</span>
+          <span>Agile/Scrum</span>
         </div>
         <div className="px-4 py-2 rounded-full bg-green-100 border border-green-300 text-green-500 font-medium flex items-center gap-2">
           <IconSparkles className="size-4" />
-          <span>Feedback</span>
+          <span>Risk Mgmt</span>
         </div>
       </div>
     </div>
