@@ -78,7 +78,7 @@ const Card = ({
   return (
     <div
       className={cn(
-        "max-w-l mx-auto bg-neutral-50 dark:bg-neutral-800 rounded-lg",
+        "mx-auto h-fit bg-neutral-50 dark:bg-neutral-800 rounded-lg",
         className
       )}
     >
@@ -97,7 +97,7 @@ const CardContent = ({
   return (
     <div
       className={cn(
-        "px-4 md:px-8 md:pb-12 pb-6 flex items-center justify-between",
+        "flex items-center justify-between px-4 pb-6 md:px-8 md:pb-4",
         className
       )}
     >
@@ -392,7 +392,11 @@ const Badge = ({
 
 const SkeletonTwo = () => {
   return (
-    <div className="perspective-distant h-full flex items-center justify-center">
+    <div className="perspective-distant h-full flex items-center justify-center relative">
+      {/* Top gradient overlay */}
+      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-neutral-50 dark:from-neutral-800 to-transparent z-10 pointer-events-none" />
+      {/* Bottom gradient overlay */}
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-neutral-50 dark:from-neutral-800 to-transparent z-10 pointer-events-none" />
       <div
         style={{
           transform: "rotateY(-15deg) rotateX(15deg) rotateZ(10deg)",
@@ -532,7 +536,11 @@ const Pattern = () => {
 
 const SkeletonThree = () => {
   return (
-    <div className="perspective-distant h-full flex items-center justify-center">
+    <div className="perspective-distant h-full flex items-center justify-center relative">
+      {/* Top gradient overlay */}
+      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-neutral-50 dark:from-neutral-800 to-transparent z-10 pointer-events-none" />
+      {/* Bottom gradient overlay */}
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-neutral-50 dark:from-neutral-800 to-transparent z-10 pointer-events-none" />
       <div
         style={{
           transform: "rotateY(15deg) rotateX(15deg) rotateZ(-10deg)",

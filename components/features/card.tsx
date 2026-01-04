@@ -11,7 +11,7 @@ export const Card = ({
   return (
     <div
       className={cn(
-        "max-w-l mx-auto bg-neutral-50 dark:bg-neutral-800 rounded-lg",
+        "max-w-l mx-auto bg-neutral-50 dark:bg-neutral-800 rounded-lg h-fit",
         className
       )}
     >
@@ -30,7 +30,7 @@ export const CardContent = ({
   return (
     <div
       className={cn(
-        "px-4 md:px-8 md:pb-12 pb-6 flex items-center justify-between",
+        "px-4 md:px-8 md:pb-4 pb-6 flex items-center justify-between",
         className
       )}
     >
