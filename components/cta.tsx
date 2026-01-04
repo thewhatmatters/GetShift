@@ -4,12 +4,14 @@ import { Container } from "./container";
 import { Heading } from "./heading";
 import { Subheading } from "./subheading";
 import { Button } from "./ui/button";
-import Link from "next/link";
 import { IconArrowRight } from "@tabler/icons-react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
+import { useWaitlistModal } from "./waitlist-modal";
 
 export const CTA = () => {
+  const { openModal } = useWaitlistModal();
+
   return (
     <section className="py-10 md:py-20 lg:py-32 relative overflow-hidden">
       <Container className="relative z-10">
@@ -26,11 +28,9 @@ export const CTA = () => {
           <Subheading className="mt-6 mb-8 mx-auto">
             Your next career isn&apos;t hiding. It&apos;s waiting for you to claim it.
           </Subheading>
-          <Button asChild className="shadow-brand" size="lg">
-            <Link href="#pricing">
-              Get Early Access
-              <IconArrowRight className="size-4" />
-            </Link>
+          <Button onClick={() => openModal("cta")} className="shadow-brand" size="lg">
+            Get Early Access
+            <IconArrowRight className="size-4" />
           </Button>
           <p className="mt-4 text-sm text-neutral-500">
             Be first to know when we launch

@@ -69,14 +69,6 @@ const faqSchema = {
     },
     {
       "@type": "Question",
-      name: "Is there a free trial available?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes, we offer a 14-day free trial so you can explore all features before committing to a plan.",
-      },
-    },
-    {
-      "@type": "Question",
       name: "What kind of support do you provide?",
       acceptedAnswer: {
         "@type": "Answer",
@@ -96,8 +88,8 @@ const softwareApplicationSchema = {
     "AI-powered career matching platform that analyzes your experience and shows you careers you're qualified for.",
   offers: {
     "@type": "AggregateOffer",
-    lowPrice: "29",
-    highPrice: "49",
+    lowPrice: "49",
+    highPrice: "79",
     priceCurrency: "USD",
     offerCount: "2",
   },

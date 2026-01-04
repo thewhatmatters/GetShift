@@ -22,11 +22,6 @@ export const FAQs = () => {
       answer: "Simply upload your resume or connect your LinkedIn profile. Our AI analyzes your experience, skills, and background to identify career paths you're already qualified for, then creates a personalized 90-day roadmap to help you get there.",
     },
     {
-      question: "Is there a free trial available?",
-      answer:
-        "Yes, we offer a 14-day free trial so you can explore all features before committing to a plan.",
-    },
-    {
       question: "What kind of support do you provide?",
       answer:
         "We provide customer support through email and comprehensive documentation to help you get the most out of Shift. Premium plans include priority support and personalized guidance.",

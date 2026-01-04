@@ -6,6 +6,7 @@ import { StickyBar } from "@/components/sticky-bar";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { StructuredData } from "@/components/structured-data";
+import { WaitlistModalProvider } from "@/components/waitlist-modal";
 
 const anekLatin = Anek_Latin({
   variable: "--font-anek",
@@ -19,7 +20,7 @@ const inter = Inter({
   weight: ["400", "500", "600", "700"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://getshift.io";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://getshift.co";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -103,10 +104,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {/* <StickyBar /> */}
-          <Navbar />
-          <main className="bg-background text-foreground">{children}</main>
-          <Footer />
+          <WaitlistModalProvider>
+            {/* <StickyBar /> */}
+            <Navbar />
+            <main className="bg-background text-foreground">{children}</main>
+            <Footer />
+          </WaitlistModalProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -1,0 +1,172 @@
+# GitHub Actions Workflow: Neon Database Branching
+# 
+# This workflow creates a Neon database branch for each pull request,
+# runs migrations, deploys a preview, and cleans up on PR close.
+#
+# Required secrets:
+# - NEON_PROJECT_ID: Your Neon project ID
+# - NEON_API_KEY: Your Neon API key
+# - VERCEL_TOKEN: Your Vercel token (if using Vercel)
+# - VERCEL_ORG_ID: Your Vercel org ID
+# - VERCEL_PROJECT_ID: Your Vercel project ID
+
+name: Preview Environment
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+
+concurrency:
+  group: preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+env:
+  NEON_PROJECT_ID: ${{ secrets.NEON_PROJECT_ID }}
+  NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+  BRANCH_NAME: preview/pr-${{ github.event.pull_request.number }}
+
+jobs:
+  # ==========================================================================
+  # CREATE PREVIEW ENVIRONMENT
+  # ==========================================================================
+  create-preview:
+    if: github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    outputs:
+      db_url: ${{ steps.create-branch.outputs.db_url_with_pooler }}
+      db_url_unpooled: ${{ steps.create-branch.outputs.db_url }}
+      
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create Neon Branch
+        id: create-branch
+        uses: neondatabase/create-branch-action@v5
+        with:
+          project_id: ${{ env.NEON_PROJECT_ID }}
+          api_key: ${{ env.NEON_API_KEY }}
+          branch_name: ${{ env.BRANCH_NAME }}
+          parent: main
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run migrations
+        env:
+          DATABASE_URL: ${{ steps.create-branch.outputs.db_url }}
+        run: npx drizzle-kit migrate
+        # Or for Prisma: npx prisma migrate deploy
+
+  # ==========================================================================
+  # DEPLOY PREVIEW (Vercel)
+  # ==========================================================================
+  deploy-preview:
+    needs: create-preview
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+        
+      - name: Pull Vercel Environment
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          
+      - name: Build Project
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          DATABASE_URL: ${{ needs.create-preview.outputs.db_url }}
+          DATABASE_URL_UNPOOLED: ${{ needs.create-preview.outputs.db_url_unpooled }}
+          
+      - name: Deploy Preview
+        id: deploy
+        run: |
+          URL=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
+          echo "preview_url=$URL" >> $GITHUB_OUTPUT
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          
+      - name: Comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: comments } = await github.rest.issues.listComments({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+            
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('Preview Environment')
+            );
+            
+            const body = `## 🚀 Preview Environment
+            
+            | Resource | Link |
+            |----------|------|
+            | **Preview** | ${{ steps.deploy.outputs.preview_url }} |
+            | **Database** | \`${{ env.BRANCH_NAME }}\` |
+            
+            *Updated: ${new Date().toISOString()}*`;
+            
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                comment_id: botComment.id,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body
+              });
+            }
+
+  # ==========================================================================
+  # CLEANUP ON PR CLOSE
+  # ==========================================================================
+  cleanup:
+    if: github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Delete Neon Branch
+        uses: neondatabase/delete-branch-action@v3
+        with:
+          project_id: ${{ env.NEON_PROJECT_ID }}
+          api_key: ${{ env.NEON_API_KEY }}
+          branch: ${{ env.BRANCH_NAME }}
+          
+      - name: Comment cleanup
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '🧹 Preview environment and database branch cleaned up.'
+            });

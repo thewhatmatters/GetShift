@@ -4,12 +4,14 @@ import { Container } from "./container";
 import { Heading } from "./heading";
 import { Subheading } from "./subheading";
 import { Button } from "./ui/button";
-import Link from "next/link";
 import { HeroDashboardMockup } from "./hero-dashboard-mockup";
 import { GradientDivider } from "./gradient-divider";
 import { IconArrowRight } from "@tabler/icons-react";
+import { useWaitlistModal } from "./waitlist-modal";
 
 export const Hero = () => {
+  const { openModal } = useWaitlistModal();
+
   return (
     <section className="pt-10 md:pt-20 lg:pt-32 relative overflow-hidden">
       <Container>
@@ -22,15 +24,10 @@ export const Hero = () => {
           already qualified for — plus a 90-day plan to land one.
         </Subheading>
         <div className="flex items-center gap-4 flex-wrap">
-          <Button asChild className="shadow-brand" size="lg">
-            <Link href="#pricing">
-              Get Early Access
-              <IconArrowRight className="size-4" />
-            </Link>
+          <Button onClick={() => openModal("hero")} className="shadow-brand" size="lg">
+            Get Early Access
+            <IconArrowRight className="size-4" />
           </Button>
-          {/* <Button asChild variant="outline" size="lg">
-            <Link href="#how-it-works">View Sample Report</Link>
-          </Button> */}
         </div>
         <HeroDashboardMockup />
       </Container>

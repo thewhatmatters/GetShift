@@ -39,7 +39,18 @@ export const JobsShowcase = () => {
               height={691}
               width={1229}
               draggable={false}
-              className="absolute inset-0 rounded-lg border border-neutral-200 shadow-xl select-none pointer-events-none"
+              className="absolute inset-0 rounded-lg border border-neutral-200 shadow-xl select-none pointer-events-none dark:hidden"
+              style={{
+                transform: "rotateY(20deg) rotateX(40deg) rotateZ(-20deg)",
+              }}
+            />
+            <Image
+              src="/marketing/market-intelligence-dark.png"
+              alt="Shift Market Intelligence Dashboard"
+              height={691}
+              width={1229}
+              draggable={false}
+              className="absolute inset-0 rounded-lg border border-neutral-700 shadow-xl select-none pointer-events-none hidden dark:block"
               style={{
                 transform: "rotateY(20deg) rotateX(40deg) rotateZ(-20deg)",
               }}
@@ -60,7 +71,18 @@ export const JobsShowcase = () => {
               height={691}
               width={1229}
               draggable={false}
-              className="absolute inset-0 -translate-x-10 rounded-lg border border-neutral-200 shadow-xl select-none pointer-events-none"
+              className="absolute inset-0 -translate-x-10 rounded-lg border border-neutral-200 shadow-xl select-none pointer-events-none dark:hidden"
+              style={{
+                transform: "rotateY(20deg) rotateX(40deg) rotateZ(-20deg)",
+              }}
+            />
+            <Image
+              src="/marketing/jobs-dark.png"
+              alt="Shift Jobs Dashboard"
+              height={691}
+              width={1229}
+              draggable={false}
+              className="absolute inset-0 -translate-x-10 rounded-lg border border-neutral-700 shadow-xl select-none pointer-events-none hidden dark:block"
               style={{
                 transform: "rotateY(20deg) rotateX(40deg) rotateZ(-20deg)",
               }}

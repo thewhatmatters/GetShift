@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { IconLayoutSidebar, IconX } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "motion/react";
+import { useWaitlistModal } from "./waitlist-modal";
 
 const navlinks: { title: string; href: string }[] = [
   // {
@@ -29,6 +30,8 @@ export const Navbar = () => {
 
 export const MobileNavbar = () => {
   const [open, setOpen] = useState(false);
+  const { openModal } = useWaitlistModal();
+
   return (
     <div className="flex md:hidden px-4 py-2 justify-between relative">
       <Logo />
@@ -92,8 +95,8 @@ export const MobileNavbar = () => {
             </div>
             <div>
               <div className="flex items-center justify-end gap-4">
-                <Button asChild>
-                  <Link href="#pricing">Get Shift</Link>
+                <Button onClick={() => { setOpen(false); openModal("mobile-nav"); }}>
+                  Get Early Access
                 </Button>
               </div>
             </div>
@@ -105,6 +108,8 @@ export const MobileNavbar = () => {
 };
 
 export const DesktopNavbar = () => {
+  const { openModal } = useWaitlistModal();
+
   return (
     <Container className="py-4 items-center justify-between hidden lg:flex">
       <Logo />
@@ -120,8 +125,8 @@ export const DesktopNavbar = () => {
         ))}
       </div>
       <div className="flex items-center gap-4">
-        <Button asChild className="shadow-brand">
-          <Link href="#pricing">Get Early Access</Link>
+        <Button onClick={() => openModal("navbar")} className="shadow-brand">
+          Get Early Access
         </Button>
       </div>
     </Container>
