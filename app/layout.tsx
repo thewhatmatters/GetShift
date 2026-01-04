@@ -103,7 +103,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <StickyBar />
+          {/* <StickyBar /> */}
           <Navbar />
           <main className="bg-background text-foreground">{children}</main>
           <Footer />

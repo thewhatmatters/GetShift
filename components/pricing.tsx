@@ -42,10 +42,10 @@ export const Pricing = () => {
 
         <div className="flex flex-col gap-4">
           <PricingCard
-            price="29"
+            price="49"
             description="Perfect for individuals exploring their next career move."
             ctaLink="#"
-            ctaText="Start your free trial"
+            ctaText="Get Early Access"
             steps={[
               "5 Career Matches",
               "Basic Skills Analysis",
@@ -54,10 +54,10 @@ export const Pricing = () => {
             ]}
           />
           <PricingCard
-            price="49"
+            price="79"
             description="Ideal for professionals ready to make a serious career shift."
             ctaLink="#"
-            ctaText="Get Full Access"
+            ctaText="Get Early Access"
             steps={[
               "10+ Career Matches",
               "Complete Skills Gap Analysis",

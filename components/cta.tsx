@@ -28,12 +28,12 @@ export const CTA = () => {
           </Subheading>
           <Button asChild className="shadow-brand" size="lg">
             <Link href="#pricing">
-              Get Shift for $49
+              Get Early Access
               <IconArrowRight className="size-4" />
             </Link>
           </Button>
           <p className="mt-4 text-sm text-neutral-500">
-            30-day money-back guarantee
+            Be first to know when we launch
           </p>
         </motion.div>
       </Container>

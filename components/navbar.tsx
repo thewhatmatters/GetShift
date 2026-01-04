@@ -7,15 +7,15 @@ import { Button } from "./ui/button";
 import { IconLayoutSidebar, IconX } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "motion/react";
 
-const navlinks = [
-  {
-    title: "Careers",
-    href: "/careers",
-  },
-  {
-    title: "Blog",
-    href: "/blog",
-  },
+const navlinks: { title: string; href: string }[] = [
+  // {
+  //   title: "Careers",
+  //   href: "/careers",
+  // },
+  // {
+  //   title: "Blog",
+  //   href: "/blog",
+  // },
 ];
 
 export const Navbar = () => {
@@ -121,7 +121,7 @@ export const DesktopNavbar = () => {
       </div>
       <div className="flex items-center gap-4">
         <Button asChild className="shadow-brand">
-          <Link href="#pricing">Get Shift — $49</Link>
+          <Link href="#pricing">Get Early Access</Link>
         </Button>
       </div>
     </Container>

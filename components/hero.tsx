@@ -24,13 +24,13 @@ export const Hero = () => {
         <div className="flex items-center gap-4 flex-wrap">
           <Button asChild className="shadow-brand" size="lg">
             <Link href="#pricing">
-              Start My Career Shift
+              Get Early Access
               <IconArrowRight className="size-4" />
             </Link>
           </Button>
-          <Button asChild variant="outline" size="lg">
+          {/* <Button asChild variant="outline" size="lg">
             <Link href="#how-it-works">View Sample Report</Link>
-          </Button>
+          </Button> */}
         </div>
         <HeroDashboardMockup />
       </Container>
