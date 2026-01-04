@@ -1,6 +1,6 @@
 import Script from "next/script";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://getshift.io";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://getshift.co";
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -12,13 +12,13 @@ const organizationSchema = {
   description:
     "AI-powered career matching platform that helps professionals discover careers they're already qualified for.",
   sameAs: [
-    "https://twitter.com/getshiftio",
-    "https://linkedin.com/company/getshift",
+    "https://twitter.com/randydigital",
+    "https://www.linkedin.com/company/109513374",
   ],
-  contactPoint: {
-    "@type": "ContactPoint",
-    contactType: "customer service",
-    email: "support@getshift.io",
+  foundingDate: "2024",
+  founder: {
+    "@type": "Person",
+    name: "WhatMatters",
   },
 };
 
@@ -29,14 +29,6 @@ const websiteSchema = {
   url: siteUrl,
   description:
     "Discover careers you're already qualified for with AI-powered matching.",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: `${siteUrl}/search?q={search_term_string}`,
-    },
-    "query-input": "required name=search_term_string",
-  },
 };
 
 const faqSchema = {
@@ -92,13 +84,6 @@ const softwareApplicationSchema = {
     highPrice: "79",
     priceCurrency: "USD",
     offerCount: "2",
-  },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.8",
-    ratingCount: "150",
-    bestRating: "5",
-    worstRating: "1",
   },
 };
 

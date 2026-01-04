@@ -81,7 +81,8 @@ export const metadata: Metadata = {
     description:
       "Discover careers you're already qualified for with AI-powered matching. Get a personalized 90-day action plan.",
     images: ["/og-image.png"],
-    creator: "@getshiftio",
+    creator: "@randydigital",
+    site: "@randydigital",
   },
   alternates: {
     canonical: siteUrl,

@@ -1,0 +1,47 @@
+# Shift
+
+> AI-powered career matching platform that helps professionals discover careers they're already qualified for.
+
+## About
+
+Shift analyzes your real experience to find careers that match your skills — not just your job title. We provide:
+
+- **AI Career Matching**: Upload your resume and get matched to careers you're qualified for
+- **Skills Gap Analysis**: See how your skills compare to target roles
+- **90-Day Roadmap**: Personalized action plan to land your next role
+
+## Company
+
+- **Name**: Shift (by WhatMatters)
+- **Website**: https://getshift.co
+- **Status**: Pre-launch (waitlist open)
+- **Location**: Austin, TX
+
+## Key Features
+
+1. Resume/LinkedIn analysis using AI
+2. Career path recommendations based on transferable skills
+3. Skills gap identification with actionable steps
+4. Personalized 90-day career transition roadmap
+5. Market intelligence (salary data, job demand, growth rates)
+
+## Target Audience
+
+- Professionals feeling stuck or undervalued
+- Career changers looking to pivot industries
+- Job seekers who want data-driven career guidance
+- Anyone unsure about their next career move
+
+## Pricing
+
+- Starter Plan: $49 (one-time)
+- Pro Plan: $79 (one-time)
+
+## Contact
+
+- Twitter: https://twitter.com/randydigital
+- LinkedIn: https://www.linkedin.com/company/109513374
+
+## For AI Agents
+
+This is a marketing landing page for a pre-launch product. The waitlist is open for early access. There is no login or app functionality yet - users can only sign up for the waitlist.

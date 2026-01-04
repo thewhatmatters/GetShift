@@ -36,27 +36,20 @@ export const Footer = () => {
         </div>
       </Container>
 
-      <Container className="flex flex-col sm:flex-row justify-between mt-10 relative z-20 gap-4 md:gap-0">
-        <p className="text-sm text-neutral-500">
-          &copy; {new Date().getFullYear()} Shift. All rights reserved.
-        </p>
+      <Container className="flex flex-col sm:flex-row justify-between items-center mt-10 relative z-20 gap-4">
+        <div className="flex flex-col items-center sm:items-start gap-1 text-sm text-neutral-500">
+          <p>Crafted with <span className="text-red-500">♥</span> in Austin, TX by <Link href="https://whatmatters.so" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">WhatMatters</Link></p>
+          <p>&copy; {new Date().getFullYear()} Shift. All rights reserved.</p>
+        </div>
 
-        <div className="flex md:items-end items-start flex-col gap-4">
-          {/* <div className="flex items-center gap-4">
-            <div className="flex items-center gap-4 *:text-sm *:text-neutral-500">
-              <Link href="/privacy">Privacy Policy</Link>
-              <Link href="/terms">Terms of Service</Link>
-            </div>
-          </div> */}
-          <div className="flex items-center gap-4">
-            <ModeToggle />
-            <Link href="https://twitter.com/randydigital" aria-label="Follow us on Twitter" target="_blank" rel="noopener noreferrer">
-              <IconBrandTwitter className="size-4" />
-            </Link>
-            <Link href="https://www.linkedin.com/company/109513374" aria-label="Connect on LinkedIn" target="_blank" rel="noopener noreferrer">
-              <IconBrandLinkedin className="size-4" />
-            </Link>
-          </div>
+        <div className="flex items-center gap-4">
+          <ModeToggle />
+          <Link href="https://twitter.com/randydigital" aria-label="Follow us on Twitter" target="_blank" rel="noopener noreferrer">
+            <IconBrandTwitter className="size-4" />
+          </Link>
+          <Link href="https://www.linkedin.com/company/109513374" aria-label="Connect on LinkedIn" target="_blank" rel="noopener noreferrer">
+            <IconBrandLinkedin className="size-4" />
+          </Link>
         </div>
       </Container>
 
