@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Anek_Latin } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { StickyBar } from "@/components/sticky-bar";
@@ -97,6 +98,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-4LV48F5JTV"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-4LV48F5JTV');
+          `}
+        </Script>
+      </head>
       <body className={`${anekLatin.variable} ${inter.variable} antialiased`} suppressHydrationWarning>
         <StructuredData />
         <ThemeProvider
